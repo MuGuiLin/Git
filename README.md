@@ -257,12 +257,14 @@ git config --system| 						//系统 基本不用
 ### 【四】、Git的备份:
 
 【常用的传输协议】:
+
 常用协议 | 语法格式 | 内容说明
 -------|-------|-------
 本地协议(1) | /path/iDitor.git | 哑协议【linux】（本地） 哑协议传输进度不可见
 本地协议(2) | file:///path/iDitor.git | 智能协议（本地） 智能协议传输进度可见，而且速度比哑协议要快
 http/https协议 | http://gitlab.smgtech.net/01810597/iDitor.git | 智能协议（远程: 用户名，密码）
 ssh协议 | git@gitlab.smgtech.net:01810597/iDitor.git | 智能协议【工作中最常用】（远程：密钥 SSH Key）
+
 
 【查看关联的远程仓库信息】:
 >   git remote					//查看关联的远程仓库的名称
@@ -688,7 +690,7 @@ ll -all|							//查看所有目录和文件 的列表详情
 dir| 								//同上
 dir -all|							//同上
 du -sh *| 							//查看当前目录所有文件，文件夹 的大小
-du -h								//查看所有文件，文件夹 的大小
+du -h|								//查看所有文件，文件夹 的大小
 df|									//查看存储空间信息
 
 
