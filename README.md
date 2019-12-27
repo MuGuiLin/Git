@@ -48,13 +48,13 @@ Git 笔记
 
 
 #### 【配置user信息， 新安装好git后一定要进行的最小基本配置】
-	命令|注释
-	----|----
-	git config --global user.name 'myName'|		
-	git config --global user.email 'myEmail'|	
-	git config --global|						//全局 常用
-	git config --local| 						//本地 很少用
-	git config --system| 						//系统 基本不用
+命令|注释
+----|----
+git config --global user.name 'myName'|		
+git config --global user.email 'myEmail'|	
+git config --global|						//全局 常用
+git config --local| 						//本地 很少用
+git config --system| 						//系统 基本不用
 
 ---
 #### 【查看配置user信息】
@@ -257,13 +257,12 @@ Git 笔记
 ### 【四】、Git的备份:
 
 【常用的传输协议】:
-
-	常用协议 | 语法格式 | 内容说明
-	-------|-------|-------
-	本地协议(1) | /path/iDitor.git | 哑协议【linux】（本地） 哑协议传输进度不可见
-	本地协议(2) | file:///path/iDitor.git | 智能协议（本地） 智能协议传输进度可见，而且速度比哑协议要快
-	http/https协议 | http://gitlab.smgtech.net/01810597/iDitor.git | 智能协议（远程: 用户名，密码）
-	ssh协议 | git@gitlab.smgtech.net:01810597/iDitor.git | 智能协议【工作中最常用】（远程：密钥 SSH Key）
+常用协议 | 语法格式 | 内容说明
+-------|-------|-------
+本地协议(1) | /path/iDitor.git | 哑协议【linux】（本地） 哑协议传输进度不可见
+本地协议(2) | file:///path/iDitor.git | 智能协议（本地） 智能协议传输进度可见，而且速度比哑协议要快
+http/https协议 | http://gitlab.smgtech.net/01810597/iDitor.git | 智能协议（远程: 用户名，密码）
+ssh协议 | git@gitlab.smgtech.net:01810597/iDitor.git | 智能协议【工作中最常用】（远程：密钥 SSH Key）
 
 【查看关联的远程仓库信息】:
 >   git remote					//查看关联的远程仓库的名称
@@ -493,13 +492,12 @@ Git 笔记
 # Git分支管理
 ---
 #### 【查看分支】
-
-	命令|注释
-	----|----
-	git branch -l| 						//查看当前在哪个本地分支上
-	git branch -lv| 						//查看当前在哪个本地分支上 + 提交信息
-	git branch -a| 						//查看所有分支(包括本地和远程)
-	git branch -av|						//查看所有分支(包括本地和远程) + 提交信息
+命令|注释
+----|----
+git branch -l| 						//查看当前在哪个本地分支上
+git branch -lv| 						//查看当前在哪个本地分支上 + 提交信息
+git branch -a| 						//查看所有分支(包括本地和远程)
+git branch -av|						//查看所有分支(包括本地和远程) + 提交信息
 
 
 ---
@@ -586,29 +584,27 @@ Git鼓励大量使用分支：
 # 相关查看命令：
 
 #### 【查看提交地址】
-
-	命令|注释
-	----|----
-	git remote -v						|//查看提交地址
-	git remote add origin 提交地址		|//[添加提交地址]，在本地创建的 git init 后为其添加提交地址， 可以 .git目录下的config文件中查看[remote "origin"]项
-	git remote set-url origin 提交地址	|//[修改提交地址]， 如果是已经添加的提交地址后，想改变提交地址
-	git remote rm origin 				|//[删除提交地址], 
+命令|注释
+----|----
+git remote -v						|//查看提交地址
+git remote add origin 提交地址		|//[添加提交地址]，在本地创建的 git init 后为其添加提交地址， 可以 .git目录下的config文件中查看[remote "origin"]项
+git remote set-url origin 提交地址	|//[修改提交地址]， 如果是已经添加的提交地址后，想改变提交地址
+git remote rm origin 				|//[删除提交地址], 
 
 
 ---
 #### 【相关查看】注：可以用gitk 命令 以图形化界面展示版本， 或者用 gitk --all
-
-	命令|注释
-	----|----
-	git config --list|  				//检查配置信息 (按回车向下查看！)
-	git status	|						//查看状态（注：只有新增了一个空的文件夹，或是重命名文件时只是改变大小写， 是没有status状态的！！！）
-	git log|							//查看当前分支提交历史记录
-	git log	--oneline| 					//查看当前分支提交简洁的历史记录
-	git log -n3|						//查看当前分支最近3次的提交历史记录 数字可改 如：1 2 3 4 5 6......
-	git log --graph|					//查看当前分支提交的历史记录以图形化详细显示
-	git log --all --graph|				//查看所有分支提交的历史记录以图形化详细显示
-	git log --all -n5 --graph|			//多参数组合使用。 graph图形 
-	git log --all --graph 分支名|		//查看指定分支提交的历史记录以图形化详细显示
+命令|注释
+----|----
+git config --list|  				//检查配置信息 (按回车向下查看！)
+git status	|						//查看状态（注：只有新增了一个空的文件夹，或是重命名文件时只是改变大小写， 是没有status状态的！！！）
+git log|							//查看当前分支提交历史记录
+git log	--oneline| 					//查看当前分支提交简洁的历史记录
+git log -n3|						//查看当前分支最近3次的提交历史记录 数字可改 如：1 2 3 4 5 6......
+git log --graph|					//查看当前分支提交的历史记录以图形化详细显示
+git log --all --graph|				//查看所有分支提交的历史记录以图形化详细显示
+git log --all -n5 --graph|			//多参数组合使用。 graph图形 
+git log --all --graph 分支名|		//查看指定分支提交的历史记录以图形化详细显示
 
 >	如： git log --all --graph test		//这是查看 test 分支提交的历史记录以图形化详细显示
 
@@ -674,38 +670,36 @@ Git鼓励大量使用分支：
 # Dos 常用操作：
 
 #### 【Dos 常用操作】 前面不用加 git 
-
-	命令|注释
-	----|----
-	ipconfig|							//查看网络状态
-	Alt + F2|							//打开一个新命令窗口
-	Alt + Enter|						//全屏
-	Win + ↑→↓← |						//调整窗口位置，按两次箭头全屏切换
-	Win + Tab| 							//切换窗口
-	exit |								//退出命令工具
-	clear|								//清屏
-	cls|								//清屏
-	pwd|  								//查看当前目录
-	ls|  								//查看所有目录和文件
-	ls -all|							//查看所有目录和文件(包括隐藏的)
-	ll|									//查看所有目录和文件 的列表详情
-	ll -all|							//查看所有目录和文件 的列表详情
-	dir| 								//同上
-	dir -all|							//同上
-	du -sh *| 							//查看当前目录所有文件，文件夹 的大小
-	du -h								//查看所有文件，文件夹 的大小
-	df|									//查看存储空间信息
+命令|注释
+----|----
+ipconfig|							//查看网络状态
+Alt + F2|							//打开一个新命令窗口
+Alt + Enter|						//全屏
+Win + ↑→↓← |						//调整窗口位置，按两次箭头全屏切换
+Win + Tab| 							//切换窗口
+exit |								//退出命令工具
+clear|								//清屏
+cls|								//清屏
+pwd|  								//查看当前目录
+ls|  								//查看所有目录和文件
+ls -all|							//查看所有目录和文件(包括隐藏的)
+ll|									//查看所有目录和文件 的列表详情
+ll -all|							//查看所有目录和文件 的列表详情
+dir| 								//同上
+dir -all|							//同上
+du -sh *| 							//查看当前目录所有文件，文件夹 的大小
+du -h								//查看所有文件，文件夹 的大小
+df|									//查看存储空间信息
 
 
 ---
 #### 【杀死进程】
-
-	命令|注释
-	----|----
-	ps					|				//显示所有运行中的进程	
-	kill 12345(进程号)	|				//杀死进程
-	kill -KILL 123456	|				//强制杀死进程
-	kill -9 123456  	|				//彻底杀死进程
+命令|注释
+----|----
+ps					|				//显示所有运行中的进程	
+kill 12345(进程号)	|				//杀死进程
+kill -KILL 123456	|				//强制杀死进程
+kill -9 123456  	|				//彻底杀死进程
 
 ---
 #### 【新建目录】
@@ -756,11 +750,11 @@ __如：__
 
 
 #### 【删除目录、文件】
-	命令|注释
-	----|----
-	rm -rf .git     	|				//删除git项目
-	rm -r  目录名或文件名	|				//删除指定的目录
-	rm -rf 目录名或文件名	|				//删除指定的目录
+命令|注释
+----|----
+rm -rf .git     	|				//删除git项目
+rm -r  目录名或文件名	|				//删除指定的目录
+rm -rf 目录名或文件名	|				//删除指定的目录
 
 
 
