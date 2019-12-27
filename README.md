@@ -205,7 +205,7 @@ git config --system| 						//系统 基本不用
 	
 【怎么修改最新commit的message注：--amend 此修改一般用于未push之前修改commit信息】
 
-	git commit --amend 		//对最新(最近)一次提交做 commit 修改
+	git commit --amend -m "描述" 		//对最新(最近)一次提交做 commit 修改
 
 
 【消除最近的几次commit提交 回退到之前的某次提交，注：请确定好，考虑清楚 后在操作，因为git reset --hard hash值 这个命令一下去，就不能恢复了！！！切记！！！】
@@ -568,6 +568,21 @@ git branch -av|						//查看所有分支(包括本地和远程) + 提交信息
 	git checkout test					//直接切换
 	git checkout master
 
+
+
+#### 【合并分支】
+	
+	git merge 要合并的分支名
+
+例如：把B分支合并到A分支，要先切换到A分支，再合并
+	git checkout A
+	git merge B
+	
+	git breanch --merged 查年已合并的分支
+	
+	
+#### 【合并记录】
+	git rebase
 
 
 Git鼓励大量使用分支：
