@@ -251,6 +251,7 @@ Git 笔记
 
 
 
+	git push --set-upstream origin test   // 如果没有运程分支时用这名句
 
 
 
