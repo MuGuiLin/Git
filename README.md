@@ -1,9 +1,548 @@
+# Git
+
+
+## 什么是版本控制？
+
+版本控制是指对软件开发过程中各种程序代码、说明文档等文件的变更进行管理，它将追踪文件变化，记录文件的变更时间、变更内容、甚至变更执行人进行记录，同时对每一个阶段性变更（不仅仅只是一个文件的变化）添加版本编号，方便将来进行查阅特定阶段的变更信息，甚至是回滚
+
+## 什么是 Git？
+
+### 人工版本控制器
+
+通过人工的复制行为来保存项目的不同阶段的内容，添加适当的一些描述文字加以区分
+
+- 繁琐、容易出错
+- 产生大量重复（冗余）数据
+
+### 版本控制工具
+
+通过程序完成上述人工版本控制行为
+
+- 方便且功能强大
+- 只记录不同版本之间变化的部分
+
+### 常见版本控制工具
+
+- CVS
+- SVN
+- Git
+- ……
+
+
+
+## 怎么工作的？
+
+首先，我们得先了解两个重要概念
+
+- 状态
+- 区域
+
+### git 文件生命周期
+
+![lifecycle](.\assets\lifecycle.png)
+
+### 状态
+
+同时，git 又提供了三种（也可以说是四种）不同的记录状态
+
+- 已修改（modified）
+- 已暂存（staged）
+- 已提交（committed）
+
+有一个特殊的状态
+
+- 未追踪（Untracked）
+
+### 区域
+
+git 提供了三个不同的工作区，用来存放不同的内容
+
+- 工作目录
+- 暂存区域
+- Git 仓库
+
+![areas](.\assets\areas.png)
+
+
+
+## 安装
+
+https://git-scm.com/
+
+
+
+## 配置
+
+当安装完 Git 应该做的第一件事就是设置你的用户名称与邮件地址。 这样做很重要，因为每一个 Git 的提交都会使用这些信息，并且它会写入到你的每一次提交中，不可更改
+
+```bash
+git config user.name "你的姓名"
+git config user.email "你的邮箱"
+```
+
+### -- global
+
+通过 `--global` 选项可以设置全局配置信息
+
+```bash
+git config --global user.name "你的姓名"
+git config --global user.email "你的邮箱"
+```
+
+### 检查配置
+
+```bash
+# 打印所有config
+git config --list
+# 打印指定config
+git config user.name
+```
+
+
+
+## 创建仓库 - repository
+
+进入希望纳入 git 版本控制的项目目录，使用 `git init` 初始化
+
+```bash
+git init
+```
+
+该命令将创建一个名为 `.git` 的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这个目录也是上面我们说的三个区域之一，这个目录也是 Git 保存数据记录的地方，非常重要，如非必要，不要轻易改动
+
+
+
+## 工作流与基本操作
+
+当一个项目被 Git 初始化以后，只是表示我们希望通过 Git 来管理当前的这个项目文件的不同时期版本记录，但是这个时候项目中已存在的文件，或者以后新增的文件都是没有进入版本控制管理的，它们是 `未追踪（Untracked）` 的状态
+
+
+
+## 查看工作区的文件状态
+
+`git status`
+
+```bash
+git status
+```
+
+查看工作区中的文件状态
+
+### 乱码
+
+#### git status 显示乱码
+
+```bash
+git config --global core.quotepath false
+```
+
+#### 终端乱码
+
+菜单 -> 设置 -> 文本 -> 本地 / 编码
+
+或修改配置文件
+
+```
+[gui]  
+    encoding = utf-8  
+    # 代码库统一使用utf-8  
+[i18n]  
+    commitencoding = utf-8  
+    # log编码
+[svn]  
+    pathnameencoding = utf-8  
+    # 支持中文路径
+[core]
+    quotepath = false 
+    # status引用路径不再是八进制（反过来说就是允许显示中文了）
+```
+
+
+
+## 添加工作区文件到暂存区
+
+`git add`
+
+```bash
+git add 1.txt
+# 添加多个文件
+git add 2.txt 3.txt
+# 添加整个目录
+git add ./a
+# 添加多个目录
+git add ./b ./c
+# 添加所有文件
+git add .
+```
+
+### 创建版本
+
+`git commit`
+
+将暂存区里的改动给提交到本地 git 仓库，也就是为这次工作（一般会把某个具有特定意义的工作作为一个版本，它可以是多个文件的变化）
+
+-   每次提交同时会生成一个 40 位的哈希值，作为该次提交版本的唯一 id
+
+#### 提交备注
+
+每次提交都需要填写备注信息
+
+```bash
+git commit
+# 会调用默认（或自定义）的文本编辑器
+```
+
+#### 修改默认编辑器
+
+```bash
+git config core.editor notepad
+
+# 添加 vscode 编辑器 - mac
+# 通过 vim 打开环境变量配置文件
+vim ~/.bash_profile
+# 添加环境变量
+export PATH=/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+# 保存退出
+source ~/.bash_profile
+# 测试：在终端中直接通过命令 code 调用 vscode
+git config --global core.editor "code --wait"
+```
+
+#### 单行备注
+
+```bash
+git commit -m 备注信息
+```
+
+
+
+## 查看提交日志
+
+`git log`
+
+```bash
+// 完整格式
+git log
+// 简要格式（单行）
+git log --oneline
+```
+
+
+
+## 修复提交
+
+`git commit --amend`
+
+修复（替换上一次）提交，在不增加一个新的提交版本的情况下将新修改的代码追加到前一次的提交中
+
+```bash
+git commit --amend -m 提交
+```
+
+
+
+## 删除
+
+`git rm`
+
+```bash
+# 从 git 仓库与工作区中删除指定文件
+git rm 文件
+
+# 只删除 git 仓库中的文件
+git rm --cached 文件
+
+# rm 以后，需要 commit 这次操作，否则 rm 将保留在暂存区
+git commit -m 修正
+```
+
+
+
+### 撤销重置
+
+`git reset`
+
+#### 从暂存区中撤销到工作区
+
+```bash
+// 从暂存区中撤销一个指定文件
+git reset HEAD 文件名称
+// 从暂存区中国年撤销所有文件
+git reset HEAD .
+```
+
+#### 该命令既可以用于回退版本
+
+```bash
+# 回退到指定的 commitID 版本
+git reset --hard commitID
+```
+
+
+
+## 比较
+
+```bash
+# 比较 工作区和暂存区
+git diff 文件 
+# 比较 暂存区和仓库
+git diff --cached [commitId] 文件
+# 比较 工作区和仓库
+git diff commitId filename
+# 比较 仓库不同版本
+git diff commitId1 commitId2
+```
+
+
+
+## 分支
+
+我们的开发就像是游戏的任务，默认是在主线（master）上进行开发的。许多时候，还有各种支线任务，git 支持我们创建分支来进行项目开发
+
+### 查看分支
+
+```bash
+git branch
+```
+
+### 创建分支
+
+```bash
+git branch 分支名称
+```
+
+### 切换分支
+
+```bash
+git checkout 分支名称
+
+# 也可以使用 checkout -b 来新建分支(仅在第一次使用)
+git checkout -b 分支名称
+
+注：当在一个项目有多个分支时：
+	1、先任意随便克隆一个分支下来。
+	2、切换到其他分支，注：第一次要【 git checkout -b 当前分支名 origin/要切换的分支名】这样就把远程的分支拉下来了，此时本地当前目录中就变成新分支的内容了【注：在1个目录中只能显示1个分支，如想显示多个分支，就在不同的目录下克隆分支就行了】
+	3、以后就可以直接 git checkout 分支名称
+```
+
+### 分支合并
+
+```bash
+# B 合并到 A，需要切换到 A 分支
+git merge 被合并分支
+
+# 查看已经合并的分支
+git branch --merged
+# 查看未合并的分支
+git branch --no-merged
+```
+
+### 删除分支
+
+```bash
+# 如果分支为未合并状态，则不允许删除
+git branch -d 分支名称
+# 强制删除
+git branch -D 分支名称
+```
+
+
+
+## 合并记录
+
+`rebase`
+
+```bash
+# 合并 HEAD 前两个祖先记录
+git rebase -i HEAD~2
+```
+
+#### ~ 与 ^
+
+~ : 纵向
+
+^ : 横向
+
+![1566209448773](assets/path.png)
+
+#### rebase 操作
+
+```bash
+# p, pick = use commit => 使用
+# r, reword = use commit, but edit the commit message => 使用，但重新编辑说明
+# e, edit = use commit, but stop for amending => 使用
+# s, squash = use commit, but meld into previous commit => 使用，但合并上一次
+# f, fixup = like "squash", but discard this commit's log message => 就像 squash 那样，但会抛弃这个 Commit 的 Commit message
+# x, exec = run command (the rest of the line) using shell => 执行脚本
+# d, drop = remove commit => 移除
+```
+
+```bash
+git rebase -i HEAD~3
+# 弹出编辑器，根据需要的进行修改，然后保存
+# 如果为 r，s 则会再次弹出编辑器，修改新的 commit message，修改之后保存
+```
+
+>   如果出现一些问题，可以通过 `git rebase --edit-todo` 和 `git rebase --continue` 进行重新编辑保存
+
+
+
+## 合并冲突
+
+有的时候，不同的分支可能会对同一个文件内容和位置上进行操作，这样在合并的过程中就会产生冲突
+
+-   查看冲突文件
+-   修复冲突内容
+-   提交
+
+
+
+## 标签
+
+有的时候，我们希望给某一个特定的历史提交打上一些标签
+
+### 新建 tag
+
+```bash
+git tag -a v1.0.0 HEAD/commitId  fc80c6f
+```
+
+### 查看 tag
+
+```bash
+git tag
+```
+
+
+
+## 协同开发
+
+以上所有的操作都是建立在本地的，如果我们希望进行团队协同开发，那么这个时候，我们就需要把 git 仓库信息与团队中的所有人进行共享
+
+-   分布式 - 中心化与去中心化
+
+### github
+
+首先注册一个账号
+
+使用 ssh 链接
+
+
+
+## SSH
+
+https://help.github.com/cn/articles/connecting-to-github-with-ssh
+
+https://help.github.com/cn/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+#### 生成 SSH 秘钥
+
+```bash
+ssh-keygen -t rsa -C "zmouse@miaov.com"
+```
+
+#### 添加代理
+
+使用 `ssh-add` 代理，如果没有启动，可以手动启动
+
+```bash
+eval $(ssh-agent -s)
+```
+
+#### 添加 私钥
+
+```bash
+ssh-add 私钥路径
+```
+
+#### 在 github 上添加公钥
+
+个人中心 -> 设置 -> ssh -> 添加
+
+#### 测试
+
+```bash
+ssh -T git@github.com
+```
+
+### git 远程
+
+#### 链接
+
+```bash
+git remote add origin git@github.com:miaov-zmouse/kkb-test.git
+```
+
+#### 提交（同步）远程
+
+同步本地仓库到远程
+
+```bash
+git push -u origin master
+# -u 简化后续操作
+git push origin master
+```
+
+#### 远程分支
+
+```bash
+# 提交到远程（分支）
+git push origin [本地分支名称]:[远程分支名称]
+
+# 远程先创建好分支然后拉取到本地
+git checkout -b [本地分支名称] origin/[远程分支名称]
+
+# 拉取远程分支到本地
+git pull origin [远程分支名称]:[本地分支名称]
+
+# 查看远程仓库
+git remote show origin
+
+# 查看本地分支
+git branch
+
+# 查看远程分支
+git branch -r
+
+# 查看所有分支
+git branch -a
+
+# 删除本地分支
+git branch -d [本地分支名称]
+
+# 删除远程分支
+git push origin --delete [远程分支名称]
+# or
+git push origin :[远程分支名称]
+
+# 设置默认提交分支
+git branch --set-upstream-to=origin/[远程分支名称] [本地分支名称]
+```
+
+
+
+
+
+## 扩展：工作流 - git work flow 
+
+![img](assets/gitflow.png)
+
+## GUI 工具
+
+https://git-scm.com/download/gui/win
+
+-   Sourcetree
+-   other editor
+
+
+
+
 
 Git 笔记
 ======
 
 作者：沐枫  
- 日期：2019-05-09
+日期：2019-05-09
 
 > Git官方教程网址: [https://git-scm.com/book/zh/v2](https://git-scm.com/book/zh/v2)
 
@@ -48,13 +587,13 @@ Git 笔记
 
 
 #### 【配置user信息， 新安装好git后一定要进行的最小基本配置】
-	命令|注释
-	---|---
-	git config --global user.name 'myName'|		
-	git config --global user.email 'myEmail'|	
-	git config --global|						//全局 常用
-	git config --local| 						//本地 很少用
-	git config --system| 						//系统 基本不用
+命令|注释
+----|----
+git config --global user.name 'myName'|		
+git config --global user.email 'myEmail'|	
+git config --global|						//全局 常用
+git config --local| 						//本地 很少用
+git config --system| 						//系统 基本不用
 
 ---
 #### 【查看配置user信息】
@@ -132,6 +671,7 @@ Git 笔记
 
 # Git对代码的提交与维护：
 
+
 ---
 #### 【代码提交】【注：提交】[如果在多人协作时，一定要 先拉 git pull 再推 git push]
 
@@ -204,7 +744,7 @@ Git 笔记
 	
 【怎么修改最新commit的message注：--amend 此修改一般用于未push之前修改commit信息】
 
-	git commit --amend 		//对最新(最近)一次提交做 commit 修改
+	git commit --amend -m "描述" 		//对最新(最近)一次提交做 commit 修改
 
 
 【消除最近的几次commit提交 回退到之前的某次提交，注：请确定好，考虑清楚 后在操作，因为git reset --hard hash值 这个命令一下去，就不能恢复了！！！切记！！！】
@@ -258,12 +798,14 @@ Git 笔记
 ### 【四】、Git的备份:
 
 【常用的传输协议】:
-	常用协议|语法格式|内容说明
-	-------|-------|-------
-	本地协议(1) | /path/iDitor.git | 哑协议【linux】（本地） 哑协议传输进度不可见
-	本地协议(2) | file:///path/iDitor.git | 智能协议（本地） 智能协议传输进度可见，而且速度比哑协议要快
-	http/https协议 | http://gitlab.smgtech.net/01810597/iDitor.git | 智能协议（远程: 用户名，密码）
-	ssh协议 | git@gitlab.smgtech.net:01810597/iDitor.git | 智能协议【工作中最常用】（远程：密钥 SSH Key）
+
+常用协议 | 语法格式 | 内容说明
+-------|-------|-------
+本地协议(1) | /path/iDitor.git | 哑协议【linux】（本地） 哑协议传输进度不可见
+本地协议(2) | file:///path/iDitor.git | 智能协议（本地） 智能协议传输进度可见，而且速度比哑协议要快
+http/https协议 | http://gitlab.smgtech.net/01810597/iDitor.git | 智能协议（远程: 用户名，密码）
+ssh协议 | git@gitlab.smgtech.net:01810597/iDitor.git | 智能协议【工作中最常用】（远程：密钥 SSH Key）
+
 
 【查看关联的远程仓库信息】:
 >   git remote					//查看关联的远程仓库的名称
@@ -425,6 +967,7 @@ Git 笔记
 
  git worktree add 
 
+
 ---
 #### 【解决冲突】 
 > **Git合并时遇到冲突或错误后取消合并 **
@@ -493,13 +1036,12 @@ Git 笔记
 # Git分支管理
 ---
 #### 【查看分支】
-
-	命令|注释
-	---|---
-	git branch -l| 						//查看当前在哪个本地分支上
-	git branch -lv| 						//查看当前在哪个本地分支上 + 提交信息
-	git branch -a| 						//查看所有分支(包括本地和远程)
-	git branch -av|						//查看所有分支(包括本地和远程) + 提交信息
+命令|注释
+----|----
+git branch -l| 						//查看当前在哪个本地分支上
+git branch -lv| 						//查看当前在哪个本地分支上 + 提交信息
+git branch -a| 						//查看所有分支(包括本地和远程)
+git branch -av|						//查看所有分支(包括本地和远程) + 提交信息
 
 
 ---
@@ -546,6 +1088,7 @@ Git 笔记
 
 > 学习网址：https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424
 
+
 ---
 #### 【删除分支】
 	git branch -d 分支名             	//删除分支
@@ -557,6 +1100,7 @@ Git 笔记
 注意：
 	不能删除当前的分支！！！
 	
+	
 ---
 #### 【切换分支】 注：切换分支时 .git/HEAD 会发生变化，用 cat .git/HEAD 命令就可以查看了
 	git checkout -b test origin/test	//首次切换到test分支
@@ -564,6 +1108,21 @@ Git 笔记
 	git checkout test					//直接切换
 	git checkout master
 
+
+
+#### 【合并分支】
+	
+	git merge 要合并的分支名
+
+例如：把B分支合并到A分支，要先切换到A分支，再合并
+	git checkout A
+	git merge B
+	
+	git breanch --merged 查年已合并的分支
+	
+	
+#### 【合并记录】
+	git rebase
 
 
 Git鼓励大量使用分支：
@@ -586,29 +1145,27 @@ Git鼓励大量使用分支：
 # 相关查看命令：
 
 #### 【查看提交地址】
-
-	命令|注释
-	---|---
-	git remote -v						|//查看提交地址
-	git remote add origin 提交地址		|//[添加提交地址]，在本地创建的 git init 后为其添加提交地址， 可以 .git目录下的config文件中查看[remote "origin"]项
-	git remote set-url origin 提交地址	|//[修改提交地址]， 如果是已经添加的提交地址后，想改变提交地址
-	git remote rm origin 				|//[删除提交地址], 
+命令|注释
+----|----
+git remote -v						|//查看提交地址
+git remote add origin 提交地址		|//[添加提交地址]，在本地创建的 git init 后为其添加提交地址， 可以 .git目录下的config文件中查看[remote "origin"]项
+git remote set-url origin 提交地址	|//[修改提交地址]， 如果是已经添加的提交地址后，想改变提交地址
+git remote rm origin 				|//[删除提交地址], 
 
 
 ---
 #### 【相关查看】注：可以用gitk 命令 以图形化界面展示版本， 或者用 gitk --all
-
-	命令|注释
-	---|---
-	git config --list|  				//检查配置信息 (按回车向下查看！)
-	git status	|						//查看状态（注：只有新增了一个空的文件夹，或是重命名文件时只是改变大小写， 是没有status状态的！！！）
-	git log|							//查看当前分支提交历史记录
-	git log	--oneline| 					//查看当前分支提交简洁的历史记录
-	git log -n3|						//查看当前分支最近3次的提交历史记录 数字可改 如：1 2 3 4 5 6......
-	git log --graph|					//查看当前分支提交的历史记录以图形化详细显示
-	git log --all --graph|				//查看所有分支提交的历史记录以图形化详细显示
-	git log --all -n5 --graph|			//多参数组合使用。 graph图形 
-	git log --all --graph 分支名|		//查看指定分支提交的历史记录以图形化详细显示
+命令|注释
+----|----
+git config --list|  				//检查配置信息 (按回车向下查看！)
+git status	|						//查看状态（注：只有新增了一个空的文件夹，或是重命名文件时只是改变大小写， 是没有status状态的！！！）
+git log|							//查看当前分支提交历史记录
+git log	--oneline| 					//查看当前分支提交简洁的历史记录
+git log -n3|						//查看当前分支最近3次的提交历史记录 数字可改 如：1 2 3 4 5 6......
+git log --graph|					//查看当前分支提交的历史记录以图形化详细显示
+git log --all --graph|				//查看所有分支提交的历史记录以图形化详细显示
+git log --all -n5 --graph|			//多参数组合使用。 graph图形 
+git log --all --graph 分支名|		//查看指定分支提交的历史记录以图形化详细显示
 
 >	如： git log --all --graph test		//这是查看 test 分支提交的历史记录以图形化详细显示
 
@@ -662,50 +1219,43 @@ Git鼓励大量使用分支：
 			</html>
 ```
 	
-
+	
 	
 ---
-	
-	
-
-
-
-
 # Dos 常用操作：
 
 #### 【Dos 常用操作】 前面不用加 git 
-
-	命令|注释
-	---|---
-	ipconfig|							//查看网络状态
-	Alt + F2|							//打开一个新命令窗口
-	Alt + Enter|						//全屏
-	Win + ↑→↓← |						//调整窗口位置，按两次箭头全屏切换
-	Win + Tab| 							//切换窗口
-	exit |								//退出命令工具
-	clear|								//清屏
-	cls|								//清屏
-	pwd|  								//查看当前目录
-	ls|  								//查看所有目录和文件
-	ls -all|							//查看所有目录和文件(包括隐藏的)
-	ll|									//查看所有目录和文件 的列表详情
-	ll -all|							//查看所有目录和文件 的列表详情
-	dir| 								//同上
-	dir -all|							//同上
-	du -sh *| 							//查看当前目录所有文件，文件夹 的大小
-	du -h								//查看所有文件，文件夹 的大小
-	df|									//查看存储空间信息
+命令|注释
+----|----
+ipconfig|							//查看网络状态
+Alt + F2|							//打开一个新命令窗口
+Alt + Enter|						//全屏
+Win + ↑→↓← |						//调整窗口位置，按两次箭头全屏切换
+Win + Tab| 							//切换窗口
+exit |								//退出命令工具
+clear|								//清屏
+cls|								//清屏
+pwd|  								//查看当前目录
+ls|  								//查看所有目录和文件
+ls -all|							//查看所有目录和文件(包括隐藏的)
+ll|									//查看所有目录和文件 的列表详情
+ll -all|							//查看所有目录和文件 的列表详情
+dir| 								//同上
+dir -all|							//同上
+du -sh *| 							//查看当前目录所有文件，文件夹 的大小
+du -h|								//查看所有文件，文件夹 的大小
+df|									//查看存储空间信息
 
 
 ---
 #### 【杀死进程】
+命令|注释
+----|----
+ps					|				//显示所有运行中的进程	
+kill 12345(进程号)	|				//杀死进程
+kill -KILL 123456	|				//强制杀死进程
+kill -9 123456  	|				//彻底杀死进程
 
-	命令|注释
-	---|---
-	ps					|				//显示所有运行中的进程	
-	kill 12345(进程号)	|				//杀死进程
-	kill -KILL 123456	|				//强制杀死进程
-	kill -9 123456  	|				//彻底杀死进程
 
 ---
 #### 【新建目录】
@@ -728,6 +1278,7 @@ Git鼓励大量使用分支：
 	【.wap文件的删除】
 		1、vi -r 文件名 根据提示：按 D 删除；
 	 	2、打开任务管理器，结束：vim.exe 进程；
+
 
 ---
 #### 【重命名目录、文件】
@@ -756,16 +1307,11 @@ __如：__
 
 
 #### 【删除目录、文件】
-	命令|注释
-	---|---
-	rm -rf .git     	|				//删除git项目
-	rm -r  目录名或文件名	|				//删除指定的目录
-	rm -rf 目录名或文件名	|				//删除指定的目录
-
-
-
-
-
+命令|注释
+----|----
+rm -rf .git     	|				//删除git项目
+rm -r  目录名或文件名	|				//删除指定的目录
+rm -rf 目录名或文件名	|				//删除指定的目录
 
 
 
@@ -781,18 +1327,26 @@ git commit -m "add README"
 git push -u origin master
 
 
+
+
 #### 【把现有的项目提交到远程Git仓库】
 命令	   |  注释
--------|-----
+----|----
 cd 目录名|		//进入项目目录
 git init|		//初始化git
 git remote add origin git@gitlab.smgtech.net:01810597/iDitor.git|	//添加远程仓库地址
 git add |		//跟踪提交目录及文件
 git commit "描述"|	//添加描述
-git push -u origin master	//第一次提交到远程仓库 master 如果没有设置用户名和密码，此时会自动弹出提示框，或输入用户名和密码【密码在输入时是看不见的】
+git push -u origin master|	//第一次提交到远程仓库 master 如果没有设置用户名和密码，此时会自动弹出提示框，或输入用户名和密码【密码在输入时是看不见的】
+
+
+
 
 #### 【配置Git 会使用操作系统默认的文本编辑器o为Notepad++】
+```javascript
 git config --global core.editor Notepad++
+```
+
 
 
 #### 【获取帮助】若你使用 Git 时需要获取帮助，有三种方法可以找到 Git 命令的使用手册：
