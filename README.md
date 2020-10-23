@@ -267,7 +267,7 @@ git commit -m ÐÞÕý
 ```bash
 // ´ÓÔÝ´æÇøÖÐ³·ÏúÒ»¸öÖ¸¶¨ÎÄ¼þ
 git reset HEAD ÎÄ¼þÃû³Æ
-// ´ÓÔÝ´æÇøÖÐ¹úÄê³·ÏúËùÓÐÎÄ¼þ
+// ´ÓÔÝ´æÇøÖÐ³·ÏúËùÓÐÎÄ¼þ
 git reset HEAD .
 ```
 
@@ -320,6 +320,9 @@ git checkout ·ÖÖ§Ãû³Æ
 git checkout -b ·ÖÖ§Ãû³Æ
 
 ×¢£ºµ±ÔÚÒ»¸öÏîÄ¿ÓÐ¶à¸ö·ÖÖ§Ê±£º
+
+git checkout -b [±¾µØ·ÖÖ§Ãû³Æ(¿É×Ô¶¨Òå£¬½¨ÒéºÍÔ¶³Ì·ÖÖ§ÃûÏàÍ¬)] origin/[Ô¶³Ì·ÖÖ§Ãû³Æ]
+
 	1¡¢ÏÈÈÎÒâËæ±ã¿ËÂ¡Ò»¸ö·ÖÖ§ÏÂÀ´¡£
 	2¡¢ÇÐ»»µ½ÆäËû·ÖÖ§£¬×¢£ºµÚÒ»´ÎÒª¡¾ git checkout -b µ±Ç°·ÖÖ§Ãû origin/ÒªÇÐ»»µÄ·ÖÖ§Ãû¡¿ÕâÑù¾Í°ÑÔ¶³ÌµÄ·ÖÖ§À­ÏÂÀ´ÁË£¬´ËÊ±±¾µØµ±Ç°Ä¿Â¼ÖÐ¾Í±ä³ÉÐÂ·ÖÖ§µÄÄÚÈÝÁË¡¾×¢£ºÔÚ1¸öÄ¿Â¼ÖÐÖ»ÄÜÏÔÊ¾1¸ö·ÖÖ§£¬ÈçÏëÏÔÊ¾¶à¸ö·ÖÖ§£¬¾ÍÔÚ²»Í¬µÄÄ¿Â¼ÏÂ¿ËÂ¡·ÖÖ§¾ÍÐÐÁË¡¿
 	3¡¢ÒÔºó¾Í¿ÉÒÔÖ±½Ó git checkout ·ÖÖ§Ãû³Æ
@@ -491,9 +494,12 @@ git push origin [±¾µØ·ÖÖ§Ãû³Æ]:[Ô¶³Ì·ÖÖ§Ãû³Æ]
 
 # Ô¶³ÌÏÈ´´½¨ºÃ·ÖÖ§È»ºóÀ­È¡µ½±¾µØ
 git checkout -b [±¾µØ·ÖÖ§Ãû³Æ] origin/[Ô¶³Ì·ÖÖ§Ãû³Æ]
+git checkout -b [±¾µØ·ÖÖ§Ãû³Æ(¿É×Ô¶¨Òå£¬½¨ÒéºÍÔ¶³Ì·ÖÖ§ÃûÏàÍ¬)] origin/[Ô¶³Ì·ÖÖ§Ãû³Æ]
 
 # À­È¡Ô¶³Ì·ÖÖ§µ½±¾µØ
 git pull origin [Ô¶³Ì·ÖÖ§Ãû³Æ]:[±¾µØ·ÖÖ§Ãû³Æ]
+
+git fetch origin [Ô¶³Ì·ÖÖ§Ãû³Æ]:[±¾µØ·ÖÖ§Ãû³Æ]
 
 # ²é¿´Ô¶³Ì²Ö¿â
 git remote show origin
@@ -507,8 +513,9 @@ git branch -r
 # ²é¿´ËùÓÐ·ÖÖ§
 git branch -a
 
-# É¾³ý±¾µØ·ÖÖ§
+# É¾³ý±¾µØ·ÖÖ§¡¾×¢£º²»ÄÜÉ¾³ýµ±Ç°·ÖÖ§£¬ÒªÏÈÇÐ»»µ½ÆäËû·ÖÖ§£¬ÔÙÉ¾³ý¡¿
 git branch -d [±¾µØ·ÖÖ§Ãû³Æ]
+git branch -D [±¾µØ·ÖÖ§Ãû³Æ]
 
 # É¾³ýÔ¶³Ì·ÖÖ§
 git push origin --delete [Ô¶³Ì·ÖÖ§Ãû³Æ]
@@ -553,36 +560,36 @@ Git ±Ê¼Ç
 # GitµÄ»ù±¾¸ÅÄî
 #### ¡¾gitµÄÔËÐÐÁ÷³Ì¡¿:
 >	Ó¦¸ÃÃ÷°×gitµ×²ãµÄÔËÐÐÁ÷³Ì£¬µ±ÎÒÃÇÌí¼Ó»òÕßÐÞ¸ÄÁËÎÄ¼þ²¢ÇÒaddµ½Stage AreaÖ®ºó£¬Ê×ÏÈ»á¸ù¾ÝÎÄ¼þÄÚÈÝ´´½¨²»Í¬µÄblob£¬
-	
+
 >	µ±½øÐÐÌá½»Ö®ºóÂíÉÏ´´½¨Ò»¸ötree×é¼þ°ÑÐèÒªµÄblob×é¼þÌí¼Ó½øÈ¥£¬Ö®ºóÔÙ·â×°µ½Ò»¸öcommit×é¼þÖÐÍê³É±¾´ÎÌá½»¡£
-	
+
 >	ÔÚ½«À´½øÐÐresetµÄÊ±ºò¿ÉÒÔÖ±½ÓÊ¹ÓÃgit reset --hard xxxxx¿ÉÒÔ»Ö¸´µ½Ä³¸öÌØ¶¨µÄ°æ±¾£¬
-	
+
 >	ÔÚresetÖ®ºó£¬git»á¸ù¾ÝÕâ¸öcommit×é¼þµÄid¿ìËÙµÄÕÒµ½tree×é¼þ£¬
-	
+
 >	È»ºó¸ù¾ÝtreeÕÒµ½blob×é¼þ£¬Ö®ºó¶Ô²Ö¿â½øÐÐ»¹Ô­£¬Õû¸ö¹ý³Ì¶¼ÊÇÒÔhashºÍ¶þ½øÖÆ½øÐÐ²Ù×÷£¬ËùÒÔgitÖ´ÐÐÐ§ÂÊ·Ç³£Ö®¸ß¡£
 
 
 #### ¡¾Ê²Ã´ÊÇ°æ±¾¿â¡¿:
 
 	°æ±¾¿âÓÖÃû²Ö¿â£¬Ó¢ÎÄÃûrepository£¬Äã¿ÉÒÔ¼òµ¥Àí½â³ÉÒ»¸öÄ¿Â¼£¬Õâ¸öÄ¿Â¼ÀïÃæµÄËùÓÐÎÄ¼þ¶¼¿ÉÒÔ±»Git¹ÜÀíÆðÀ´£¬Ã¿¸öÎÄ¼þµÄÐÞ¸Ä¡¢É¾³ý£¬Git¶¼ÄÜ¸ú×Ù£¬ÒÔ±ãÈÎºÎÊ±¿Ì¶¼¿ÉÒÔ×·×ÙÀúÊ·£¬»òÕßÔÚ½«À´Ä³¸öÊ±¿Ì¿ÉÒÔ¡°»¹Ô­¡±¡£
-
-	1¡¢git¹ÜÀí¾ÍÏñÊÇÒ»¸öÎÄ¼þÏµÍ³¡£Ã¿commit(commit ¾ÍÊÇ root(¸ù) ½Úµã) Ò»´Î¾Í´´½¨Ò»¿Ã´óÊ÷ tree £¬treeÏÂÓÐºÜ¶àblob£¬blob¾ÍÏàµ±ÓÚÒ¶×Ó½Úµã´æ´¢ÎÄ¼þÖµ¡£
-
-	2¡¢Ã»ÓÐÎÄ¼þÒ²¾ÍÊÇÃ»ÓÐblob¶ÔÏóµÄÄ¿Â¼ÊÇ²»»á±»git¹ÜÀíµÄ£¬ÒòÎªgitÒª¶ÔÎÄ¼þ½øÐÐ°æ±¾¹ÜÀí£¬ËùÒÔÃ»ÓÐ±ØÒª¶Ô¿ÕÄ¿Â¼Éú³É¶ÔÏó¡£
-
-	git log --all --graph
 	
+	1¡¢git¹ÜÀí¾ÍÏñÊÇÒ»¸öÎÄ¼þÏµÍ³¡£Ã¿commit(commit ¾ÍÊÇ root(¸ù) ½Úµã) Ò»´Î¾Í´´½¨Ò»¿Ã´óÊ÷ tree £¬treeÏÂÓÐºÜ¶àblob£¬blob¾ÍÏàµ±ÓÚÒ¶×Ó½Úµã´æ´¢ÎÄ¼þÖµ¡£
+	
+	2¡¢Ã»ÓÐÎÄ¼þÒ²¾ÍÊÇÃ»ÓÐblob¶ÔÏóµÄÄ¿Â¼ÊÇ²»»á±»git¹ÜÀíµÄ£¬ÒòÎªgitÒª¶ÔÎÄ¼þ½øÐÐ°æ±¾¹ÜÀí£¬ËùÒÔÃ»ÓÐ±ØÒª¶Ô¿ÕÄ¿Â¼Éú³É¶ÔÏó¡£
+	
+	git log --all --graph
+
 #### ¡¾ÇøÓò¡¿:
 	¹¤×÷Çø£º ´úÂë±à¼­Æ÷
 	HEAD£º
 	ÔÝ´æÇø£º add
 	°æ±¾¿â£º commit
-	
+
 
 #### ¡¾git¼¯³ÉÊ¹ÓÃ½û¼É ¡¿
 	1¡¢ ½ûÖ¹Ïò¼¯³É(¹«¹²)·ÖÖ§Ö´ÐÐpush -f²Ù×÷¡£
-
+	
 	2¡¢ ½ûÖ¹Ïò¼¯³É(¹«¹²)·ÖÖ§Ö´ÐÐ±ä¸üÀúÊ·µÄ²Ù×÷¡£
 
 
@@ -635,7 +642,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢git remote add origin ²Ö¿âµØÖ·
 
 	Èç£ºgit remote add origin git@gitlab.smgtech.net:01810597/git_demo.git
-
+	
 	ÓÉÓÚÔ¶³Ì¿âÊÇ¿ÕµÄ£¬ÎÒÃÇµÚÒ»´ÎÍÆËÍmaster·ÖÖ§Ê±£¬¼ÓÉÏÁË-u²ÎÊý£¬Git²»µ«»á°Ñ±¾µØµÄmaster·ÖÖ§ÄÚÈÝÍÆËÍµÄÔ¶³ÌÐÂµÄmaster·ÖÖ§£¬»¹»á°Ñ±¾µØµÄmaster·ÖÖ§ºÍÔ¶³ÌµÄmaster·ÖÖ§¹ØÁªÆðÀ´£¬ÔÚÒÔºóµÄÍÆËÍ»òÕßÀ­È¡Ê±¾Í¿ÉÒÔ¼ò»¯ÃüÁî¡£
 	
 	Èç£ºgit push -u origin master   ÒÔºó¾Í¿ÉÒÔÖ±½ÓÓÃ git pull Ãü¾ÍOKÁË¡£
@@ -678,6 +685,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	git pull			
 	git pull origin test		//´ÓÖ¸¶¨µÄÔ¶³Ì·þÎñÆ÷À­È¡
 	git pull --rebase		¡¾ÍÆ¼öÊ¹ÓÃ¡¿
+	git fetch 					// ºÍ git pull¹¦ÄÜÒ»Ñù£¬ÊÇ´ÓÔ¶³Ì»ñÈ¡×îÐÂµ½±¾µØ£¬µ«²»»á×Ô¶¯merge£¬¶øpull»á×Ô¶¯merge
 
 **´úÂëÌá½»µ½Ô¶³Ì²Ö¿âµÄ²½ÖèÏÂÈç£º**
 
@@ -687,7 +695,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	git add -u 			//½«ÎÄ¼þµÄÐÞ¸Ä¡¢ÎÄ¼þµÄÉ¾³ý£¬Ìí¼Óµ½ÔÝ´æÇø¡£
 	git add -A			//½«ÎÄ¼þµÄÐÞ¸Ä£¬ÎÄ¼þµÄÉ¾³ý£¬ÎÄ¼þµÄÐÂ½¨£¬Ìí¼Óµ½ÔÝ´æÇø(git add -A µÈÍ¬ÓÚgit add -all)¡£
 	git add *			//Ìí¼Ó´æ´¢ËùÓÐ
-
+	
 	git add ÎÄ¼þÃû			//Ìí¼Ó´æ´¢Ö¸¶¨¸Ä¶¯¹ýµÄÎÄ¼þ¡¾×¢£ºÒª¼ÓÉÏÎÄ¼þµÄÂ·¾¶Å¶£¡, ÎÄ¼þÒª¼Ó¸öÎÄ¼þºó×ºÃû£¬¶à¸öÎÄ¼þ»òÄ¿Â¼ÖÐ¼äÓÃ ¿Õ¸ñ ¸ô¿ª¡¿
 	git add ÎÄ¼þÃû1 ÎÄ¼þÃû2...	//Ìí¼Ó´æ´¢Ö¸¶¨¸Ä¶¯¹ýµÄ¶à¸öÎÄ¼þ ÖÐ¼äÓÃ¿Õ¸ñ·Ö¿ª
 
@@ -701,7 +709,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢±È½Ï ¹¤×÷Çø(Ã»addÖ®Ç°) ºÍ ÔÝ´æÇø(addÒÔºó) Ëùº¬ÎÄ¼þµÄ²îÒì
 		git diff						//²»Ö¸¶¨ÎÄ¼þÊ±£¬»áÏÔÊ¾ËùÓÐ²»Í¬µÄÎÄ¼þ£¬Èç¶¼Ã»²îÒìÔòÎÞÈÎºÎÏÔÊ¾£¡£¡
 		git diff -- index.html css/base.css			//Ö¸¶¨²é¿´index.htmlºÍbase.cssÕâÁ½¸öÎÄµÄÔÝ´æÇøºÍ HEADÖ®¼äµÄ²îÒì£¬ÈçÃ»²îÒìÔòÎÞÏÔÊ¾£¡£¡
-
+	
 	2¡¢±È½Ï ÔÝ´æÇø(addºó) ºÍ HEAD(Ã»add) Ëùº¬ÎÄ¼þµÄ²îÒì
 		git diff --cached      »òÕß	git diff ¡ªstaged  	//²»Ö¸¶¨ÎÄ¼þÊ±£¬»áÏÔÊ¾ËùÓÐ²»Í¬µÄÎÄ¼þ£¬Èç¶¼Ã»²îÒìÔòÎÞÈÎºÎÏÔÊ¾£¡£¡
 		git diff --cached -- index.html css/base.css		//Ö¸¶¨²é¿´index.htmlºÍbase.cssÕâÁ½¸ö¡¾¶à¸öÎÄ¼þÖ®¼äÓÃ ¿Õ¸ñ¸ô¿ª¡¿ÎÄµÄÔÝ´æÇøºÍ HEADÖ®¼äµÄ²îÒì£¬ÈçÃ»²îÒìÔòÎÞÏÔÊ¾£¡£¡
@@ -713,7 +721,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢´ÓÔÝ´æÇø(addÒÔºó) »Ö¸´Îª ºÍ HEADµÄÒ»Ñù£¬Ïàµ±ÓÚÈ¡ÏûaddµÄ²Ù×÷
 		git reset HEAD			//²»Ö¸¶¨ÎÄ¼þÊ±£¬»á°ÑÔÝ´æÇøËùÓÐµÄÎÄ¼þ»Ö¸´µ½HEAD£¨¹¤×÷Çø£©
 		git reset HEAD -- index.html	//Ö¸¶¨Òª»Ö¸´µÄÎÄ¼þ£¬¶à¸öÎÄ¼þÖ®¼äÓÃ ¿Õ¸ñ¸ô¿ª
-
+	
 	2¡¢ÈÃ¹¤×÷ÇøµÄÎÄ¼þ »Ö¸´Îª ºÍ ÔÝ´æÇøÒ»Ñù
 		git checkout -- index.html	//Ö¸¶¨Òª»Ö¸´µÄÎÄ¼þ£¬¶à¸öÎÄ¼þÖ®¼äÓÃ ¿Õ¸ñ¸ô¿ª
 
@@ -722,9 +730,9 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	git diff 			ÔÝ´æÇøÓë¹¤×÷Çø±È½Ï
 
 	git diff --cached	ÔÝ´æÇøÓëHEAD±È½Ï
-
+	
 	git reset HEAD		ÔÝ´æÇø»Ö¸´³ÉHEAD
-
+	
 	git checkout		ÔÝ´æÇø¸²¸Ç¹¤×÷ÇøÐÞ¸Ä 
 
 
@@ -732,7 +740,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢ÐÞ¸ÄÁË¹¤×÷Çø£¬»Ö¸´£ºgit checkout 
 
 	2¡¢addºó£¬Ïë³·Ïú£º git reset HEAD 
-
+	
 	3¡¢commitºó£¬Ïë³·Ïú£º git reset--hard hashÖµ £¨×¢£ºÒ»µ©Ö´ÐÐ£¬ÎÞ·¨»Ö¸´£©
 
 
@@ -741,7 +749,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 
 	git commit -m "ÃèÊö"		//Ìá½»ËùÓÐ¸Ä¶¯¹ýµÄÎÄ¼þ ²¢Ìí¼ÓÃèÊö µ½°æ±¾¿â [Ö´ÐÐÌá½»Ê±£¬ÏµÍ³»áÒªÇóÊäÈëÌá½»ÐÅÏ¢¡£ÇëÎñ±ØÊäÈëÌá½»ÐÅÏ¢£¬ÒòÎªÔÚ¿Õ°×µÄ×´Ì¬ÏÂÖ´ÐÐÌá½»»áÊ§°ÜµÄ¡£]
 	git commit -am "ÃèÊö"		//Ìá½»ËùÓÐ¸Ä¶¯¹ýµÄÎÄ¼þ ²¢Ìí¼ÓÃèÊö µ½°æ±¾¿â £¨-am ±íÊ¾ Ã»ÓÐÖ´ÐÐ git add . Ò²ÄÜÌá½»£©
-	
+
 ¡¾ÔõÃ´ÐÞ¸Ä×îÐÂcommitµÄmessage×¢£º--amend ´ËÐÞ¸ÄÒ»°ãÓÃÓÚÎ´pushÖ®Ç°ÐÞ¸ÄcommitÐÅÏ¢¡¿
 
 	git commit --amend -m "ÃèÊö" 		//¶Ô×îÐÂ(×î½ü)Ò»´ÎÌá½»×ö commit ÐÞ¸Ä
@@ -750,15 +758,15 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 ¡¾Ïû³ý×î½üµÄ¼¸´ÎcommitÌá½» »ØÍËµ½Ö®Ç°µÄÄ³´ÎÌá½»£¬×¢£ºÇëÈ·¶¨ºÃ£¬¿¼ÂÇÇå³þ ºóÔÚ²Ù×÷£¬ÒòÎªgit reset --hard hashÖµ Õâ¸öÃüÁîÒ»ÏÂÈ¥£¬¾Í²»ÄÜ»Ö¸´ÁË£¡£¡£¡ÇÐ¼Ç£¡£¡£¡¡¿
 	
 	1¡¢git log --all --graph	// ÏÔÊ¾ËùÓÐÌá½»ÈÕÖ¾£¬»áÏÔÊ¾Ã¿´ÎÌá½»µÄhashÖµ£¨¾ÍÊÇcommit_id£©£¬±ãÓÚ¸´ÖÆÓÃÓÚ»ØÍË
-
+	
 	2¡¢git reset --hard 970b99e2ce5 //»ØÍËµ½970b99e2ce5Õâ¸öÌá½»Ç°£¬×¢£ºÃ¿´ÎÌá½»¶¼ÓÐÒ»¸öÎ¨Ò»µÄhashÖµ Èçcommit 970b99e2ce57f93130d66eb1daef33a8f506a182 £¨Ö»ÒªÎ¨Ò»£¬¸´ÖÆÒ»²¿·Ö¾Í¿ÉÒÔÁË£©
 
 
 	¡¾ git reset ÓÐÈý¸ö²ÎÊý¡¿£º
 		1¡¢--soft		// Õâ¸öÖ»ÊÇ°Ñ HEAD Ö¸ÏòµÄ commit »Ö¸´µ½ÄãÖ¸¶¨µÄ commit£¬ÔÝ´æÇø¡¢¹¤×÷Çø±£³Ö²»±ä
-
+	
 		2¡¢--hard		// Õâ¸öÊÇ °Ñ HEAD¡¢¹¤×÷Çø¡¢ÔÝ´æÇø¡¢¶¼ÐÞ¸ÄÎªÄãÖ¸¶¨µÄ commit µÄÊ±ºòµÄÎÄ¼þ×´Ì¬¡¾--hard Î£ÏÕ²ÎÊý¡¿
-
+	
 		3¡¢--mixed		// Õâ¸öÊÇ²»¼ÓÊ±ºòµÄÄ¬ÈÏ²ÎÊý£¬°Ñ HEAD¡¢ÔÝ´æÇø ÐÞ¸ÄÎª ÄãÖ¸¶¨µÄ commit µÄÊ±ºòµÄÎÄ¼þ×´Ì¬£¬¹¤×÷Çø±£³Ö²»±ä
 
 
@@ -766,7 +774,7 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢git log --all --graph	// ÏÔÊ¾ËùÓÐÌá½»ÈÕÖ¾£¬»áÏÔÊ¾Ã¿´ÎÌá½»µÄhashÖµ£¨¾ÍÊÇcommit_id£©£¬±ãÓÚ¸´ÖÆÓÃÓÚ»ØÍË
 
 	2¡¢git diff 970b99e2ce57f 8f59099ce643e2	//ËùÓÐ²é¿´ 970b99e2ce57fÌá½» ºÍ 8f59099ce643e2Ìá½»µÄËùÓÐÎÄ¼þµÄ²îÒì
-
+	
 	2¡¢git diff 970b99e2ce57f 8f59099ce643e2 -- index.html	//Ö¸¶¨²é¿´ 970b99e2ce57fÌá½» ºÍ 8f59099ce643e2Ìá½»Ö¸¶¨µ½index.htmlÎÄ¼þµÄ²îÒì
 
 ¡¾±È½Ï²»Í¬branch·ÖÖ§µÄÎÄ¼þ²îÒì¡¿
@@ -778,9 +786,9 @@ git config --system| 						//ÏµÍ³ »ù±¾²»ÓÃ
 	1¡¢git branch -av		// ÏÔÊ¾ËùÓÐ·ÖÖ§£¬»áÏÔÊ¾Ã¿¸ö·ÖÖ§µÄhashÖµ£¨¾ÍÊÇbranch_id£©£¬±ãÓÚ¸´ÖÆÓÃÓÚ»ØÍË
 
 	2¡¢git diff d3ff58e dd9cc30 	//ËùÓÐ²é¿´ d3ff58e·ÖÖ§ ºÍ dd9cc30·ÖÖ§µÄËùÓÐÎÄ¼þµÄ²îÒì
-
-	2¡¢git diff d3ff58e dd9cc30 -- index.html	//Ö¸¶¨²é¿´ d3ff58e·ÖÖ§ ºÍ dd9cc30·ÖÖ§Ö¸¶¨µ½index.htmlÎÄ¼þµÄ²îÒì
 	
+	2¡¢git diff d3ff58e dd9cc30 -- index.html	//Ö¸¶¨²é¿´ d3ff58e·ÖÖ§ ºÍ dd9cc30·ÖÖ§Ö¸¶¨µ½index.htmlÎÄ¼þµÄ²îÒì
+
 
 
 
@@ -811,7 +819,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 >   git remote					//²é¿´¹ØÁªµÄÔ¶³Ì²Ö¿âµÄÃû³Æ
 
 >	git remote -v				//²é¿´¹ØÁªµÄÔ¶³Ì²Ö¿âµÄÏêÏ¸ÐÅÏ¢
-	
+
 >	git remote show name 		//¿´²éÔ¶³Ì²Ö¿ânameµÄÏêÏ¸ÐÅÏ¢
 
 
@@ -821,7 +829,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 	.git Ä¿Â¼ÖÐµÄ config ÎÄ¼þÖÐÓÐÔ¶³Ì²Ö¿âµÄ¹ØÁªÅäÖÃ¡£
 
 >   git remote add origin <url>		//git_url ÎªÄãµÄÔ¶³Ì²Ö¿âµÄ url£¬¿É²ÉÓÃ http Ð­Òé»ò ssh£¨git£© Ð­Òé
- 
+
  ÀýÈç£º
 >   git remote add zhineng file:///e/gitDemo/zhineng.git //ÎªÔ¶³Ì²Ö¿âÆð±ðÃûzhineng
 
@@ -848,9 +856,9 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 
 >	git remote add name url 	//ÎªÔ¶³Ì²Ö¿âÆð±ðÃû
 >	git remote show name 		//ÏÔÊ¾Ô¶³Ì²Ö¿ânameµÄÏêÏ¸ÐÅÏ¢
-	
-	
-	
+
+
+?	
 
 	1£©ÕÒ¸öÄ¿Â¼Ö´ÐÐ clone ¡£»ò
 	2£©ÓÃinit½¨¸ögit²Ö¿â£¬È»ºó´Ó±¸·ÝÊý¾Ý¿âÌí¼Óremote£¬ÔÙpushµ½ÐÂ½¨²Ö¿â£»»òÕß
@@ -871,7 +879,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 	*.exe
 	*.out
 	*.app
-	
+
 ´ËÊ±£º
 	git status	¾Í¿´²»µ½ÄãÔÚ.gitignoreÎÄ¼þÖÐ£¬ºöÂÔµÄÕâÐ©Ä¿Â¼»òÎÄ¼þÁË£¬¸ü²»»áÌí¼Óµ½ÔÝ´æÇøµÈµÈ¡£¡£¡£¡£
 	
@@ -947,7 +955,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 #### ¡¾ÔÚ¿ª·¢ÖÐÁÙÊ±¼ÓÈûÁË½ô¼±ÈÎÎñÔõÃ´´¦Àí¡¿
 
 	1¡¢git stash 	//±£´æ¹¤×÷Ä¿Â¼ºÍË÷Òý×´Ì¬WIP£¬²¢»Ö¸´µ½ÉÏ´ÎÌá½»µÄ×´Ì¬£¬
-	
+
 ×¢£ºgit stashÄ¬ÈÏÇé¿ö»º´æÒÔÏÂÎÄ¼þ£º
      	1¡¢git¸ú×ÙµÄµ«Î´Ìí¼Óµ½ÔÝ´æÇøµÄÐÞ¸Ä
      	2¡¢Ìí¼Óµ½ÔÝ´æÇøµÄÐÞ¸Ä
@@ -957,10 +965,10 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
       2¡¢±»ºöÂÔµÄÎÄ¼þ
 	
 	2¡¢git stash list	//²é¿´stashÁÐ±í Êý×éÐÐÊ½ stash@{0}£¬stash@{1}....
-
+	
 	3¡¢git stash apply	//»Ö¸´ÁÙÊ±´æ´¢£¬±£ÁôstashÁÐ±í
 	3¡¢git stash pop	//»Ö¸´ÁÙÊ±´æ´¢£¬É¾³ýstashÁÐ±í
-
+	
 	4¡¢git stash apply stash@{2} //Ö¸¶¨»Ö¸´ÁÙÊ±´æ´¢£¬±£ÁôstashÁÐ±í  Ä¬ÈÏÊ±£ºgit stash apply = git stash apply stash@{0}
 	4¡¢git stash pop stash@{3} //Ö¸¶¨»Ö¸´ÁÙÊ±´æ´¢£¬É¾³ýstashÁÐ±í
 
@@ -973,7 +981,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 > **GitºÏ²¢Ê±Óöµ½³åÍ»»ò´íÎóºóÈ¡ÏûºÏ²¢ **
 
 	1¡¢µ±GitÎÞ·¨×Ô¶¯ºÏ²¢·ÖÖ§Ê±£¬¾Í±ØÐëÊ×ÏÈ½â¾ö³åÍ»¡£½â¾ö³åÍ»ºó£¬ÔÙÌá½»£¬ºÏ²¢Íê³É¡£
-
+	
 	2¡¢½â¾ö³åÍ»¾ÍÊÇ°ÑGitºÏ²¢Ê§°ÜµÄÎÄ¼þÊÖ¶¯±à¼­ÎªÎÒÃÇÏ£ÍûµÄÄÚÈÝ£¨¾ÍÊÇµ±Á½¸ö·ÖÖ§¶¼ÐÞ¸ÄÒ»¸öÎÄ¼þ£¬²¢Ë«·½¶¼commitºó£¬´ËÊ±ÔÚºÏ²¢mergeÊ± ¾Í»á±¨´í£¬¡¾GitÓÃ<<<<<<<£¬=======£¬>>>>>>>±ê¼Ç³ö²»Í¬·ÖÖ§µÄÄÚÈÝ£¬ËùÒÔÄã½«²»ÒªµÄ´úÂëÉ¾³ý£¬ÔÙ git add ºó git commit ¡¿£©¾ÍºÃÁË¡£
 
 
@@ -982,14 +990,14 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 		Administrator@MuGuiLin MINGW64 /d/git/test/iditor (test|MERGING)
 
 	2¡¢ÓÐÕâ¸ö×´Ì¬´æÔÚÊ±£¬»áµ¼ÖÂºóÃæÏëÒªÔÙºÏ²¢µÄÊ±ºòÌáÊ¾ÈçÏÂ
-
+	
 	3¡¢git merge --abort  //È¡ÏûÕâ´ÎºÏ²¢
 		
 	4¡¢git pull --rebase  //±ä»ù
 
 
 	Ê¹ÓÃÏÂÃæµÄ¹ØÏµÇø±ðÕâÁ½¸ö²Ù×÷£º
-
+	
 	git pull = git fetch + git merge
 	git pull --rebase = git fetch + git rebase
 
@@ -1012,7 +1020,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 > ÀýÈç£º 
 		1¡¢git log --graph				//ÏÔÊ¾Ìá½»ÈÕÖ¾
 		2¡¢git checkout  ac47b9946759e	//½«HEADÖ¸ÏòÁËÒ»¸öcommitÉÏ£¬´ËÊ±¾ÍÊÇ ·ÖÀëÍ·Ö¸ÕëÁË£¬ÒòÎª£º´ËÊ±HEADÊÇÃ»ÓÐÖ¸Ïò·ÖÖ§µÄ£¬ 
-		
+
 		Administrator@MuGuiLin MINGW64 /e/gitDemo ((ac47b99...))  //²éÀ´À¨ºÅÖÐÓ¦¸ÃÊÇ£º£¨master£© »ò (dev) »ò(test) µÈ£¬ËüÊÇÖ¸ÏòÒ»¸ö¾ßÌåµÄ·ÖÖ§µÄ£¬²»ÊÇÖ¸Ïòcommit_idµÄ¡£
 
 
@@ -1022,7 +1030,7 @@ sshÐ­Òé | git@gitlab.smgtech.net:01810597/iDitor.git | ÖÇÄÜÐ­Òé¡¾¹¤×÷ÖÐ×î³£ÓÃ¡¿£
 
 > ÀýÈç£º
     git branch myNewFZ ac47b9946759e 	//½«·ÖÀëÍ· ac47b9946759e µÄcommit±£´æÔÚÒ»¸ö½ÐmyNewFZµÄÐÂ·ÖÖ§ÏÂ¾ÍºÃÁË¡£
-      
+
 Èç¹û£º
     ÄãÃ»ÓÐÖ´ÐÐÉÏÃæµÄ±£´æ·ÖÖ§ÃüÁî£¬²¢ÇÒÇÐ»»µ½±ðµÄ·ÖÖ§ÁË£¬ÄÇÄãÔÚ·ÖÀëÍ· ac47b9946759eÐÞ¸ÄµÄÄÚÈÝ¾Í¶ªÊ§ÁË£¡£¡£¡ µ±È»ÄãÈÏÎª·ÖÀëÍ· ac47b9946759eµÄÄÚÈÝÃ»ÓÃ¾ÍÃ»ÎÊÌâ£¬·ñÔòÎÊÌâ¾ÍÍæÍêÁË£¡£¡£¡
 
@@ -1080,7 +1088,7 @@ git branch -av|						//²é¿´ËùÓÐ·ÖÖ§(°üÀ¨±¾µØºÍÔ¶³Ì) + Ìá½»ÐÅÏ¢
 
 
 > ºÏ²¢ºó£¬½«±¾µØµÄmasterÍ¬²½µ½Ô¶³Ì
-	
+
 	git push origin master
 
 
@@ -1093,7 +1101,7 @@ git branch -av|						//²é¿´ËùÓÐ·ÖÖ§(°üÀ¨±¾µØºÍÔ¶³Ì) + Ìá½»ÐÅÏ¢
 #### ¡¾É¾³ý·ÖÖ§¡¿
 	git branch -d ·ÖÖ§Ãû             	//É¾³ý·ÖÖ§
 	git branch -D ·ÖÖ§Ãû             	//Ç¿ÐÐÉ¾³ý·ÖÖ§   -d ÊÇÉ¾³ý£¬ -D ÊÇÇ¿ÖÆÉ¾³ý¡£
-	
+
 ÀýÈç£º
 	git branch -D dev
 	
@@ -1111,7 +1119,7 @@ git branch -av|						//²é¿´ËùÓÐ·ÖÖ§(°üÀ¨±¾µØºÍÔ¶³Ì) + Ìá½»ÐÅÏ¢
 
 
 #### ¡¾ºÏ²¢·ÖÖ§¡¿
-	
+
 	git merge ÒªºÏ²¢µÄ·ÖÖ§Ãû
 
 ÀýÈç£º°ÑB·ÖÖ§ºÏ²¢µ½A·ÖÖ§£¬ÒªÏÈÇÐ»»µ½A·ÖÖ§£¬ÔÙºÏ²¢
@@ -1119,8 +1127,9 @@ git branch -av|						//²é¿´ËùÓÐ·ÖÖ§(°üÀ¨±¾µØºÍÔ¶³Ì) + Ìá½»ÐÅÏ¢
 	git merge B
 	
 	git breanch --merged ²éÄêÒÑºÏ²¢µÄ·ÖÖ§
-	
-	
+
+
+?	
 #### ¡¾ºÏ²¢¼ÇÂ¼¡¿
 	git rebase
 
@@ -1130,13 +1139,13 @@ Git¹ÄÀø´óÁ¿Ê¹ÓÃ·ÖÖ§£º
 	²é¿´·ÖÖ§£ºgit branch
 	
 	´´½¨·ÖÖ§£ºgit branch <name>
-
+	
 	ÇÐ»»·ÖÖ§£ºgit checkout <name>
-
+	
 	´´½¨+ÇÐ»»·ÖÖ§£ºgit checkout -b <name>
-
+	
 	ºÏ²¢Ä³·ÖÖ§µ½µ±Ç°·ÖÖ§£ºgit merge <name>
-
+	
 	É¾³ý·ÖÖ§£ºgit branch -d <name>
 
 
@@ -1177,7 +1186,7 @@ git log --all --graph ·ÖÖ§Ãû|		//²é¿´Ö¸¶¨·ÖÖ§Ìá½»µÄÀúÊ·¼ÇÂ¼ÒÔÍ¼ÐÎ»¯ÏêÏ¸ÏÔÊ¾
 		git cat-file -t	¹þÏ£Öµ			//²é¿´ÀàÐÍ
 		git cat-file -s ¹þÏ£Öµ 			//²é¿´´óÐ¡
 		git cat-file -p ¹þÏ£Öµ 			//²é¿´ÄÚÈÝ
-		
+
 ```html
 	Ê×ÏÈÈç£ºgit log
 		½á¹ûÈçÏÂ£º
@@ -1218,9 +1227,9 @@ git log --all --graph ·ÖÖ§Ãû|		//²é¿´Ö¸¶¨·ÖÖ§Ìá½»µÄÀúÊ·¼ÇÂ¼ÒÔÍ¼ÐÎ»¯ÏêÏ¸ÏÔÊ¾
 				</body>
 			</html>
 ```
-	
-	
-	
+
+
+?	
 ---
 # Dos ³£ÓÃ²Ù×÷£º
 
@@ -1274,7 +1283,7 @@ kill -9 123456  	|				//³¹µ×É±ËÀ½ø³Ì
 		:qa!Ç¿ÖÆÍË³ö
 		
 	echo 'ÕâÊÇÎÒÒªÐ´ÈëµÄÄÚÈÝ' > ÎÄ¼þÃû    //ÕâÊÇÏòÎÄ¼þÖÐÐ´ÈëÄÚÈÝ£¬×¢Òâ£ºÐ´Èë»á¸²¸ÇÖ®Ç°Ô´ÎÄ¼þÖÐµÄÄÚÈÝ¡£
-
+	
 	¡¾.wapÎÄ¼þµÄÉ¾³ý¡¿
 		1¡¢vi -r ÎÄ¼þÃû ¸ù¾ÝÌáÊ¾£º°´ D É¾³ý£»
 	 	2¡¢´ò¿ªÈÎÎñ¹ÜÀíÆ÷£¬½áÊø£ºvim.exe ½ø³Ì£»
