@@ -1,0 +1,151 @@
+Git官方教程地：https://git-scm.com/book/zh/v2
+
+
+git reset --soft HEAD~1 //撤回最近一次的commit(撤销commit，不撤销git add)
+
+git reset --mixed HEAD~1 //撤回最近一次的commit(撤销commit，撤销git add)
+
+git reset --hard HEAD~1 //撤回最近一次的commit(撤销commit，撤销git add,还原改动的代码)
+
+
+【克隆项目】
+git clone --help		//帮助信息
+git clone url			//克隆远程git项目   在GitHub 上 打开项目，点击Clone or Download 按钮选择 Use HTTPS 复制项目地址
+git clone url --branch 		//分支名 克隆远程git项目的分支
+例：git clone git@gitlab.smgtech.net:01810266/xuantishenbao.git --branch test
+
+【重新获取】删除本地文件后 Git从远程仓库重新获取
+(1)、git fetch --all
+(2)、git reset --hard 或 git reset --hard origin/test
+(3)、git pull
+
+
+【代码提交】【注：提交】[如果在多人协作时，一定要 先拉 git pull 再推 git push]
+  
+  git status			//查看修改情况
+  git log			//查看所以提交情况
+  git pull			//【注：代码提交前请先 git pull 哦哦!!】
+  git pull origin test		//从指定的远程服务器拉取
+
+
+(1)提交本地:
+   git add .			//存储所有改动过的文件
+   git add *			//存储所有
+   git add 文件名		//存储指定改动过的文件
+
+(2)写描述:
+   git commit -m "描述"		//准备提交所有改动过的文件 并添加描述
+
+(3)正式推送:
+   git push -u origin test	//真正开始提交 到主分支 【注：加了参数-u后，在以后推送时可直接用git push 代替git push origin master 第一次为了产生关联 】
+   git push -f 			//【注：除非只有自己一个人用，不然用 push --force 的都该去死，因为：git push -f表示【强行推送】将目前自己本机的代码库推送到远端，并覆盖！所以慎用！！】
+   git push			//再修改后就可以这样提交(或叫 推)
+
+
+【当有冲突时】 先 git merge --abort 再 git pull --rebase
+
+
+【相关查看】
+git log				//查看提交历史
+git log --graph			//查看详细提交历史
+git config --list  		//检查配置信息 (按回车向下查看！)
+git status			//查看状态
+git branch			//查看所以本地分支
+
+【提交地址】
+git remote -v				//查看提交地址
+git remote add origin 提交地址		//[添加提交地址]，在本地创建的 git init 后为其添加提交地址， 可以 .git目录下的config文件中查看[remote "origin"]项
+git remote set-url origin 提交地址	//[修改提交地址]， 如果是已经添加的提交地址后，想改变提交地址
+git remote rm origin 			//[删除提交地址], 
+
+【查看分支】
+git branch -l 				//看当在哪个本地分支上
+git branch -a 				//查看所有分支(包括本地和远程)
+
+【切换分支】
+git checkout -b test origin/test  	//首次切换到test分支
+git checkout -b master origin/master 	//首次切换到master 主分支
+git checkout test			//直接切换
+git checkout master
+
+【删除分支】
+git branch -d 分支名		//删除分支
+
+
+
+【常用操作】
+ipconfig 			//查看网络状态
+Alt + F2			//打开一个新命令窗口
+Alt + Enter			//全屏
+Win + ↑→↓← 			//调整窗口位置，按两次箭头全屏切换
+Win + Tab 			//切换窗口
+q 				//退出状态
+exit 				//退出命令工具
+clear				//清屏
+pwd  				//查看当前目录
+ls  				//查看所有目录和文件
+ll				//查看所有目录和文件 的列表详情
+dir 				//同上
+
+du -sh * 			//查看当前目录所以文件，文件夹 的大小
+df				//查看存储空间信息
+
+【杀死进程】
+ps				//显示所有运行中的进程	
+kill 12345(进程号)		//杀死进程
+kill -KILL 123456		//强制杀死进程
+kill -9 123456  		//彻底杀死进程
+
+【新建】
+touch 文件名			//新建一个文件
+vi 文件名			//新建一个文件并进入编辑状态（如果文件已存在，则直接进入编辑状态）
+
+
+【删除】
+rm -rf .git     		//删除git项目
+rm -rf 目录名			//删除指定的目录
+
+
+【重命名】文件夹名/目录名重命名：
+注：在git中要修改文件夹名/目录名时 【改变 大写或小写字母】 不能直接更改，因为直接更改不会记录【不区分大小写字母】 如 mupiao 改为 MuPiao 这两个是相等的，所以在 git add . 时没有记录，可以用 git status查看，
+解决方法：先把要修改文件夹名/目录名 改为其他任意思名字，然后 git add . 再 git commit -m "描述" 之后 再改为你想改的名字，再次 git add . 再 git commit -m "描述" 再 git push 往服务器推送。
+
+ 
+
+
+
+
+
+
+Administrator@MuGuiLin MINGW64 /d/git/test/iditor (test|MERGING)
+
+【克隆一个项目，添加一个文，完成一次提交】
+git clone git@gitlab.smgtech.net:01810597/iDitor.git
+cd iDitor
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+
+【把现有的项目提交到远程Git仓库】
+cd 目录名			//进入项目目录
+git init			//初始化git
+git remote add origin git@gitlab.smgtech.net:01810597/iDitor.git	//添加远程仓库地址
+git add .			//跟踪提交目录及文件
+git commit "描述"		//添加描述
+git push -u origin master	//第一次提交到远程仓库 master 如果没有设置用户名和密码，此时会自动弹出提示框，或输入用户名和密码【密码在输入时是看不见的】
+
+【配置Git 会使用操作系统默认的文本编辑器o为Notepad++】
+git config --global core.editor Notepad++
+
+
+【获取帮助】若你使用 Git 时需要获取帮助，有三种方法可以找到 Git 命令的使用手册：
+
+$ git help <verb>
+$ git <verb> --help
+$ man git-<verb>
+
+例如，要想获得 config 命令的手册，执行
+$ git help config
+
