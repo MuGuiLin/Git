@@ -1265,6 +1265,3 @@ git push origin :[远程分支名称]
 git branch --set-upstream-to=origin/[远程分支名称] [本地分支名称]
 ```
 
-
-
--   
