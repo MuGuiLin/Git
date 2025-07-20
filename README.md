@@ -53,7 +53,7 @@ git config user.email "你的邮箱"
 
 
 
-**-- global**
+**全局配置 -- global**
 
 通过 `--global` 选项可以设置全局配置信息
 
