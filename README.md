@@ -67,6 +67,13 @@ git config --global user.email "你的邮箱"
 **检查配置**
 
 ```bash
+
+# 查看本地git公钥
+cat ~/.ssh/id_rsa.pub
+
+# 生成SSH密钥（git公钥）
+ssh-keygen -t rsa -b 4096 -C "muguilin@foxmail.com"
+
 # 打印所有config
 git config --list
 
