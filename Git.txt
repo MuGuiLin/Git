@@ -5,7 +5,6 @@ Git官方教程地：https://git-scm.com/book/zh/v2
 撤销 add .
 git reset
 
-
 撤销 commit
 git reset --soft HEAD~1 //撤回最近一次的commit(撤销commit，不撤销git add)
 
