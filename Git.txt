@@ -1,11 +1,16 @@
 Git官方教程地：https://git-scm.com/book/zh/v2
 
+【撤销提交】
 
+撤销 add .
+git reset
+
+撤销 commit
 git reset --soft HEAD~1 //撤回最近一次的commit(撤销commit，不撤销git add)
 
 git reset --mixed HEAD~1 //撤回最近一次的commit(撤销commit，撤销git add)
 
-git reset --hard HEAD~1 //撤回最近一次的commit(撤销commit，撤销git add,还原改动的代码)
+git reset --hard HEAD~1 //撤回最近一次的commit(撤销commit，撤销git add, 还原改动的代码)
 
 
 【克隆项目】
@@ -13,6 +18,7 @@ git clone --help		//帮助信息
 git clone url			//克隆远程git项目   在GitHub 上 打开项目，点击Clone or Download 按钮选择 Use HTTPS 复制项目地址
 git clone url --branch 		//分支名 克隆远程git项目的分支
 例：git clone git@gitlab.smgtech.net:01810266/xuantishenbao.git --branch test
+
 
 【重新获取】删除本地文件后 Git从远程仓库重新获取
 (1)、git fetch --all
@@ -106,6 +112,9 @@ rm -rf .git     		//删除git项目
 rm -rf 目录名			//删除指定的目录
 
 
+【重命名】文件夹名/目录名重命名：
+注：在git中要修改文件夹名/目录名时 【改变 大写或小写字母】 不能直接更改，因为直接更改不会记录【不区分大小写字母】 如 mupiao 改为 MuPiao 这两个是相等的，所以在 git add . 时没有记录，可以用 git status查看，
+解决方法：先把要修改文件夹名/目录名 改为其他任意思名字，然后 git add . 再 git commit -m "描述" 之后 再改为你想改的名字，再次 git add . 再 git commit -m "描述" 再 git push 往服务器推送。
 
 Administrator@MuGuiLin MINGW64 /d/git/test/iditor (test|MERGING)
 
