@@ -657,26 +657,35 @@ git checkout master
 
 
 
-### 合并分支
+### 合并分支（没冲突）
 
-> 例如：把B分支合并到A分支（要先切换到A分支，再进行合并）
+> 例如：把dev分支合并到test分支（要先切换到test分支，再进行合并）
 
 ```shell
-git checkout A # 切换到A分支
-git pull origin A # 将A仓库代码拉取到本地
-git merge B # 从B分支 合并到 A分支
+# 1.首先，确保你在想要合并更改到的分支上。在你的例子中，你想要将test分支合并到beta分支，所以首先切换到beta分支：
+git checkout beta
 
-# 解决冲突后
+# 2.在合并之前，最好拉取最新的更改，以确保你的分支是最新的：
+git pull origin/beta 
 
+# 3.合并分支，这会将test分支合并到beta分支
+git merge test 
+# git merge --no-edit test # 加上--no-edit参数后，就不提示 Please enter a commit message to explain why this merge is necessary。。。
+
+# 4.1 推送合并（没冲突），在合并好后，将这些更改推送到远程仓库
+git push origin/beta
+
+# 4.2 推送合并（有冲突）
+如果在合并过程中遇到冲突，Git会暂停合并并通知你。你需要手动解决这些冲突。Git会标记出冲突的文件，通常文件名会以<<<<<<<, =======, >>>>>>>这样的标记分隔不同的版本。解决完冲突后，你需要标记冲突为已解决：
+
+# 如果有解决冲突后
 git add .
-git commit -m "update merge test into dev"
-git push origin A
-git merge 要合并的分支名
+git commit -m "update merge dev to test"
+git push origin/test
 
 
 # 查看已经合并的分支
 git branch --merged
-
 # 查看未合并的分支
 git branch --no-merged
 ```
@@ -687,63 +696,50 @@ git branch --no-merged
 
 >  在合并分支的时候，可能两个分支都对同1个文件内容和位置上进行了修改，这样在合并的过程中就会产生代码冲突的情况！
 
-
-
-**实例：将test 分支 合并到 dev分支，并解决冲突问题**
+**实例：将test 分支(最新的代码) 合并到 beta分支，并解决冲突问题**
 
 ‌
 
-**步骤 1：更新本地分支**‌
+**1：切换分支**‌
 
-切换到 `dev` 分支并拉取最新代码`（注：在合并前 确保要合并 和 被合并的分支代码都是最新的！！）`
+切换到 `beta` 分支并拉取最新代码`（注：在合并前 确保要合并 和 被合并的分支代码都是最新的！！）`
 
 ```shell
-git checkout dev
-git pull origin dev  # 确保 dev 分支是最新的
-
-# 注：如果切换失败，需要指定origin源分支
-git checkout -b dev origin/dev 
+git checkout origin/beta
+git pull origin/beta
 ```
 
-
-
-‌**步骤 2：执行合并**‌
+‌**2：执行合并**‌
 
 ```shell
-git merge test  # 将 test 分支合并到当前分支（dev）
+git merge --no-edit origin/test  # 将 test 分支合并到 beta当前分支
 ```
 
+‌**3：解决冲突**‌
 
-
-‌**步骤 3：解决冲突（如果没有冲突，此步骤可略过！）**‌
-
-如果合并时发生冲突，Git 会标记冲突文件：
+当合并时发生冲突，Git 会在有冲突的文件中，标记出冲突的地方：这里以index.py文件为例
 
 ```shell
-Auto-merging file.txt
-CONFLICT (content): Merge conflict in file.txt
+Auto-merging index.py
+CONFLICT (content): Merge conflict in index.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-1. ‌**手动编辑冲突文件**‌：
-   打开冲突文件（如 `file.txt`），会看到类似内容：
+1. ‌打开冲突文件：
+   打开index.py冲突文件，会看到类似删除冲突标记 `<<<<<<< HEAD`, `=======`, `>>>>>>>`，然后保留需要的新代码，删除有冲突的旧代码和冲突标记。
 
    ```js
    <<<<<<< HEAD
-   dev 分支的修改
-   =======
    test 分支的修改
-   >>>>>>> test
+   =======
+   beta 分支的修改
+   >>>>>>> beta
    ```
 
-   - 删除冲突标记 `<<<<<<<`, `=======`, `>>>>>>>`，保留需要的代码。
-
-2. ‌**确认所有冲突已解决**‌：
+2. ‌确认所有冲突已解决：
    重复编辑所有冲突文件，直至解决掉所有冲突。
 
-
-
-‌**步骤 4：提交合并结果**‌
+‌**4：提交合并**‌
 
 1. 标记冲突已解决：
 
@@ -757,30 +753,14 @@ Automatic merge failed; fix conflicts and then commit the result.
 2. 提交合并：
 
    ```shell
-   git commit -m "update merge test into dev"
+   git commit -m "update merge test to beta"
    ```
 
 3. 推送更新后的分支:
 
    ```shell
-   git push origin dev  # 将合并后的 dev 分支推送到远程
+   git push origin/beta  # 将合并后的 beta 分支推送到远程仓库
    ```
-
-
-
-‌**关键命令总结**‌
-
-```shell
-git checkout dev # 切换到dev分支
-git pull origin dev # 将dev仓库代码拉取到本地
-git merge test # 从test分支 合并到 dev分支
-
-# 解决冲突后
-
-git add .
-git commit -m "update merge test into dev"
-git push origin dev
-```
 
 
 
@@ -797,7 +777,7 @@ git push origin dev
   git reset --hard HEAD  # 回退到合并前的提交（谨慎使用）
   ```
 
-完成这些步骤后，`test` 分支的更改将成功合并到 `dev` 分支并解决所有冲突。
+完成这些步骤后，`test` 分支的更改将成功合并到 `beta` 分支并解决所有冲突。
 
 
 
