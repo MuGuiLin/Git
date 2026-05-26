@@ -588,47 +588,38 @@ git log --oneline
 
 ### 创建分支
 
-		 git checkout -b 分支名			//创建分支
-	
-	如： git checkout -b test			//这是创建一个名为test的分支。
-
-> 每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
-
-一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支以及当前分支的提交点：
-
-
-> 每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长
-
-
-当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：
-	
-	git checkout -b dev	//加上-b参数表示创建并切换
-
-> 不过，从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：
-	现在的修改就是在dev上了
-
-当修改完成dev分支的工作后，我们就可以切换回master分支：
-	git checkout master
-
-
-假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并：
-
->	git merge dev					//git merge命令用于合并指定分支到当前分支。
-或者：	
-	git merge --no-ff -m "合并的描述" dev		//并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
-
-例如：
-	git merge --no-ff -m '从master主分支合并到dev分支' master   //将master主分支合并到dev分支
-
-
-> 合并后，将本地的master同步到远程
-
-	git push origin master
-
-
-就可以看到，master和dev分支的最新提交是完全一样的。
-
 > 学习网址：https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424
+>
+> 一般新创建的Git项目，默认就只有一个master主分支！
+>
+> 正常情况下一项Git项目应该要有4个分支，分别对应4个环境：**dev(开发环境)，test(测度环境)，beta(预发布环境)，master(生产/正式环境)**
+
+将master主分支拉取到本地电脑后，当前分支为master主分
+
+```bash
+git clone -b master git@gitlab.xxx.com:xxx/xxx-project.git
+```
+
+创建beta分支
+
+```bash
+# 直接创建beta分支
+git branch beta
+```
+
+或者从master分支(如果master分支已以有代码了，在创建新分支的同时，顺便从指定的分支拷贝一份代码)创建beta分支：
+
+```bash
+# 从master分支创建beta分支：
+git checkout -b beta origin/master
+
+# 上面使命执行成功后，当前分支 会从master主分支 切换到 beta分支
+git add .
+git commit -m '在beta分支中修改了代码'
+git push origin HEAD # 将在beta分支中修改了代码 提交了远程的beta分支
+```
+
+
 
 
 
@@ -1214,7 +1205,12 @@ https://git-scm.com/download/gui/win
 
 
 
+> 每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
 
+一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支以及当前分支的提交点：
+
+
+> 每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长
 
 ## SSH
 
